@@ -1,0 +1,19 @@
+#cat  /etc/systemd/system/rigctld.service
+[Unit]
+Description=Hamlib rigctld Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/rigctld -m 2 -r localhost:4532 -t 4533 -T 0.0.0.0
+Restart=always
+RestartSec=5
+User=pi
+
+[Install]
+WantedBy=multi-user.target
+
+##sudo systemctl daemon-reload;
+##sudo systemctl enable rigctld.service;
+##sudo systemctl start rigctld.service;
+##sudo systemctl status rigctld.service
