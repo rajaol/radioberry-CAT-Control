@@ -1,0 +1,41 @@
+sudo nano /etc/systemd/system/rigctld1.service
+
+[Unit]
+Description=Rigctld Service 1
+After=network.target
+
+[Service]
+Type=simple
+User=yourusername
+ExecStart=/usr/bin/rigctld -m 2040 -r localhost:19090
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
+sudo nano /etc/systemd/system/rigctld2.service
+
+[Unit]
+Description=Rigctld Service 2
+Requires=rigctld1.service
+After=rigctld1.service
+
+[Service]
+Type=simple
+User=yourusername
+ExecStart=/usr/bin/rigctld -m 2 -r localhost:4532 -t 4533 -T 0.0.0.0
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
+Reload the Systemd daemon to pick up the new files:
+sudo systemctl daemon-reload
+
+Enable the services so they start automatically on boot:
+sudo systemctl enable rigctld1.service
+sudo systemctl enable rigctld2.service
+
+Start the services:
+sudo systemctl start rigctld1.service
+sudo systemctl start rigctld2.service
