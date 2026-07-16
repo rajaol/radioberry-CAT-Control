@@ -1,0 +1,6 @@
+video=HDMI-A-1:1024x600@60D
+add this line at the end of the line in /boot/firmware/cmdline.txt and 
+
+
+hdmi_cvt=1024 600 60 3 0 0 0 
+this line end of    /boot/firmware/config.txt
