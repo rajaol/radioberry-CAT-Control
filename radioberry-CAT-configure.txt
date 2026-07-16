@@ -1,3 +1,7 @@
+Install 
+sudo apt install libhamlib-utils
+
+
 sudo nano /etc/systemd/system/rigctld1.service
 
 [Unit]
